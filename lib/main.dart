@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'category_meals_screen.dart';
-import 'catergories_screen.dart';
+import 'screens/category_meals_screen.dart';
+import 'screens/catergories_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +28,11 @@ class MyApp extends StatelessWidget {
       // home: CategoriesScreen(),
       initialRoute: "/",
       routes: {
+        // routes take context to know that where is the widget is placed in widget tree 
         "/": (context) => CategoriesScreen(),
+        // we are storing the name of the route in (static const routename) ...it can be named anything
+        // now the widget.getting the name of the route from the rouutename.
+        // then transfering to the the new widget whom value context has stored.
         CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
       },
     );
