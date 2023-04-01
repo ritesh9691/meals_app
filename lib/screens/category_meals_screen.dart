@@ -37,7 +37,7 @@ class CategoryMealsScreen extends StatelessWidget {
     }).toList();
     // this will make sure we only get the value of the category that we have chossen.
     // through the index . the item we will click that index will be procced in the categoryMeals.
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(CategoryTitle),
@@ -46,7 +46,13 @@ class CategoryMealsScreen extends StatelessWidget {
           // CategoryMeals is used to make sure the the type to meal we are chossing in the home screen ex:(Asian) we only se the that list only(new page with some list of Asian food).
           itemCount: categoryMeals.length,
           itemBuilder: (ctx, index) {
-            return MealItem(title:categoryMeals[index].title , imageUrl: categoryMeals[index].imageUrl, duration: categoryMeals[index].duration, complexity: categoryMeals[index].complexity, affordability: categoryMeals[index].affordability);
+            return MealItem(
+              id: categoryMeals[index].id,
+                title: categoryMeals[index].title,
+                imageUrl: categoryMeals[index].imageUrl,
+                duration: categoryMeals[index].duration,
+                complexity: categoryMeals[index].complexity,
+                affordability: categoryMeals[index].affordability);
           }),
     );
   }

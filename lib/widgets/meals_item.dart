@@ -1,13 +1,14 @@
+import "package:meals_app/screens/meal_detail_screen.dart";
 
-
+import "../widgets/meals_item.dart";
 import 'package:flutter/material.dart';
 import "../models/meals.dart";
 
 class MealItem extends StatelessWidget {
-
-  // we wnat these values 
+  // we wnat these values
   // we need id to value of the meal to show the full image and recepie in the next page
   final String title;
+  final String id;
   final String imageUrl;
   final int duration;
   final Complexity complexity;
@@ -16,10 +17,11 @@ class MealItem extends StatelessWidget {
       {@required this.title,
       @required this.imageUrl,
       @required this.duration,
+      @required this.id,
       @required this.complexity,
       @required this.affordability});
 
-      // we get the value of the enums with get method
+  // we get the value of the enums with get method
   String get complexityText {
     switch (complexity) {
       case Complexity.Simple:
@@ -32,7 +34,7 @@ class MealItem extends StatelessWidget {
       case Complexity.Hard:
         return "Hard";
         break;
-// defualt method if no other case works 
+// defualt method if no other case works
         defualt:
         return "Unknown";
     }
@@ -57,11 +59,18 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  void selectedMeal() {}
+  void selectedMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(MealDetailScreen.routeName,
+    // arguments can take value in map, string ,list of key value ect 
+    // we just have to specify to the next widget that we are expecting this details with pushNamed
+    //  of this kind of data(String, map, list etc..)
+        arguments: id,);
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectedMeal,
+      onTap: () => selectedMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
